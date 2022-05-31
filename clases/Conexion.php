@@ -3,13 +3,14 @@
 
 		public static function conectar(){
 			$host = "localhost";
-			$dbname = "test";
+			$dbname = "tallerphp";
 			$user = "root";
 			$pass = "root";
 			
 			try {
 				$charset  = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'); // Defino charset UTF8
 				$cnx = new PDO("mysql:host=$host;dbname=$dbname",$user,$pass,$charset);
+				$cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Muestro errores
 				return $cnx;
 			}
 			catch (PDOException $e) {

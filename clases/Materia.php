@@ -1,8 +1,8 @@
 <?php
-    class Alumno {
+    class Materia {
     	public function listar(){
     		$sql = "SELECT *
-                    FROM alumnos
+                    FROM materias
                     WHERE estado = 1
                     ORDER BY nombre ASC";
 
@@ -10,30 +10,30 @@
         }
         
         public function buscarPorId($id){
-            $sql = "SELECT * FROM alumnos WHERE id='$id' LIMIT 1";
+            $sql = "SELECT * FROM materias WHERE id='$id' LIMIT 1";
             $objs = Conexion::consultar($sql);
             return $objs[0];
         }
 
         public function crear($data){
-            $sql = "INSERT INTO alumnos (nombre, apellido, email, telefono) 
+            $sql = "INSERT INTO materias (nombre, horario, codigo, anio) 
                     VALUES (
                         '$data[nombre]',
-                        '$data[apellido]',
-                        '$data[email]',
-                        '$data[telefono]'
+                        '$data[horario]',
+                        '$data[codigo]',
+                        '$data[anio]'
                     )";
 
             return Conexion::ejecutar($sql);
         }
         
         public function modificar($data,$id){
-            $sql = "UPDATE alumnos
+            $sql = "UPDATE materias
                     SET
                         nombre='$data[nombre]',
-                        apellido='$data[apellido]',
-                        email='$data[email]',
-                        telefono='$data[telefono]'
+                        horario='$data[horario]',
+                        codigo='$data[codigo]',
+                        anio='$data[anio]'
 
                     WHERE id=$id";
 
@@ -41,7 +41,7 @@
         }
 
         public static function borrar($id){
-    		$sql = "UPDATE alumnos SET estado=0 WHERE id=$id";
+    		$sql = "UPDATE materias SET estado=0 WHERE id=$id";
             return Conexion::ejecutar($sql);
         }
     }
