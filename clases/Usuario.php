@@ -1,8 +1,8 @@
 <?php
-    class Alumno {
+    class Usuario {
     	public function listar(){
     		$sql = "SELECT *
-                    FROM alumnos
+                    FROM usuarios
                     WHERE estado = 1
                     ORDER BY nombre ASC";
 
@@ -10,19 +10,18 @@
         }
         
         public function buscarPorId($id){
-            $sql = "SELECT * FROM alumnos WHERE id='$id' LIMIT 1";
+            $sql = "SELECT * FROM usuarios WHERE id='$id' LIMIT 1";
             $objs = Conexion::consultar($sql);
             return $objs[0];
         }
 
         public function crear($data){
             try{
-                $sql = "INSERT INTO alumnos (nombre, apellido, email, telefono) 
+                $sql = "INSERT INTO usuarios (nombre, email, clave) 
                         VALUES (
                             '$data[nombre]',
-                            '$data[apellido]',
                             '$data[email]',
-                            '$data[telefono]'
+                            '$data[clave]'
                         )";
 
                 return Conexion::ejecutar($sql);
@@ -34,12 +33,11 @@
         
         public function modificar($data,$id){
             try{            
-                $sql = "UPDATE alumnos
+                $sql = "UPDATE usuarios
                         SET
                             nombre='$data[nombre]',
-                            apellido='$data[apellido]',
                             email='$data[email]',
-                            telefono='$data[telefono]'
+                            clave='$data[clave]'
 
                         WHERE id=$id";
 
@@ -51,8 +49,15 @@
         }
 
         public function borrar($id){
-    		$sql = "UPDATE alumnos SET estado=0 WHERE id=$id";
+    		$sql = "UPDATE usuarios SET estado=0 WHERE id=$id";
             return Conexion::ejecutar($sql);
+        }
+
+        public function validarLogin($email,$clave){
+            $sql = "SELECT * FROM usuarios
+                    WHERE email='$email' AND clave='$clave' AND estado=1";
+
+            return Conexion::consultar($sql);
         }
     }
 ?>

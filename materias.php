@@ -26,6 +26,7 @@
 								<td>$row[anio]</td>
 								<td class='text-end'>
 									<a href='materias_editar.php?id=$row[id]' class='btn btn-secondary'>Editar</a>
+									<a href='materias_borrar.php?id=$row[id]' class='btn btn-danger'>Borrar</a>
 									<a href='notas.php?id_materia=$row[id]' class='btn btn-warning'>Ver notas</a>
 								</td>
 							</tr>";

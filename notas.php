@@ -59,6 +59,7 @@
 									<td class='$clase_fila'>".date("d/m/Y H:i:s",strtotime($row["fecha"]))."</td>
 									<td class='text-end'>
 										<a href='notas_editar.php?id=$row[id]' class='btn btn-secondary'>Editar</a>
+										<a href='notas_borrar.php?id=$row[id]' class='btn btn-danger'>Borrar</a>
 									</td>
 								</tr>";
 					}	

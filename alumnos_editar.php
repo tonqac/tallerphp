@@ -18,7 +18,7 @@
 
 
 		if($ok){
-			header("Location:alumnos.php?msg=ok");//echo "<div class='alert alert-success'>El registro se creó exitosamente.</div>";
+			header("Location:alumnos.php?msg=ok");
 		}
 		else{
 			echo "<div class='alert alert-danger'>Ocurrió un error al guardar los cambios.</div>";

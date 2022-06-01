@@ -2,11 +2,6 @@
 	$titulo_pagina = "Listado de Alumnos";
 	$nav_item = "alumnos";
 	require "includes/header.php";
-
-	// Si recibo la variable de confirmación, muestro el mensaje en pantalla
-	if($msg=="ok"){
-		echo "<div class='alert alert-success'>Los cambios se guardaron exitosamente.</div>";
-	}
 ?>
 
 	<table class="table table-striped table-hover">
@@ -31,6 +26,7 @@
 								<td>$row[telefono]</td>
 								<td class='text-end'>
 									<a href='alumnos_editar.php?id=$row[id]' class='btn btn-secondary'>Editar</a>
+									<a href='alumnos_borrar.php?id=$row[id]' class='btn btn-danger'>Borrar</a>
 									<a href='notas.php?id_alumno=$row[id]' class='btn btn-warning'>Ver notas</a>
 								</td>
 							</tr>";

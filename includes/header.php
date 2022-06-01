@@ -1,15 +1,18 @@
 <?php
-	// Preparo mi función para levantar todas las clases automáticamente
-	spl_autoload_register(function ($nombre_clase) {
-			require_once 'clases/'.$nombre_clase . '.php';
-	});
+	require_once "config.php";
 
-	// Creo variables por todo lo que recibo por URL
-	foreach($_GET as $n=>$v) $$n = $v;
+	// Si no está logueado, lo redirecciono al login
+	if(empty($_SESSION["usuario"])){
+		header("Location: index.php?msg=err_logged");
+		exit;
+	}
+
+	// Obtengo todas las variables recibidas (tanto por GET como POST)
+	foreach($_REQUEST as $n=>$v) $$n = $v;
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,9 +30,19 @@
 
 			<nav>
 				<ul class="nav nav-pills">
-					<li class="nav-item"><a href="alumnos.php" class="nav-link <?php if($nav_item=="alumnos") echo "active"?>">Alumnos</a></li>
-					<li class="nav-item"><a href="materias.php" class="nav-link <?php if($nav_item=="materias") echo "active"?>">Materias</a></li>
-					<li class="nav-item"><a href="notas.php" class="nav-link <?php if($nav_item=="notas") echo "active"?>">Notas</a></li>
+					<li class="nav-item">
+						<a href="alumnos.php" class="nav-link <?php if($nav_item=="alumnos") echo "link-secondary fw-bold"?>">Alumnos</a>
+					</li>
+					<li class="nav-item">
+						<a href="materias.php" class="nav-link <?php if($nav_item=="materias") echo "link-secondary fw-bold"?>">Materias</a>
+					</li>
+					<li class="nav-item">
+						<a href="notas.php" class="nav-link <?php if($nav_item=="notas") echo "link-secondary fw-bold"?>">Notas</a>
+					</li>
+
+					<li class="nav-item">
+						<a href="logout.php" class="btn btn-light">Logout</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -37,3 +50,10 @@
 
 	<main class="container">
 		<h1 class="my-4"><?php echo $titulo_pagina?></h1>
+
+		<?php
+			// Si recibo la variable de confirmación, muestro el mensaje en pantalla
+			if($msg=="ok"){
+				echo "<div class='alert alert-success'>Los cambios se guardaron exitosamente.</div>";
+			}
+		?>

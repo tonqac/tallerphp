@@ -19,7 +19,15 @@
         }
         
         public function buscarPorId($id){
-            $sql = "SELECT * FROM notas WHERE id='$id' LIMIT 1";
+            $sql = "SELECT n.*,
+                        CONCAT(a.nombre,' ',a.apellido) as alumno,
+                        m.nombre as materia
+                    FROM notas n
+                    JOIN alumnos a on a.id = n.id_alumno
+                    JOIN materias m on m.id = n.id_materia
+
+                    WHERE n.id='$id' LIMIT 1";
+
             $objs = Conexion::consultar($sql);
             return $objs[0];
         }
@@ -47,7 +55,7 @@
             return Conexion::ejecutar($sql);
         }
 
-        public static function borrar($id){
+        public function borrar($id){
     		$sql = "UPDATE notas SET estado=0 WHERE id=$id";
             return Conexion::ejecutar($sql);
         }
