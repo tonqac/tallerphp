@@ -52,7 +52,8 @@
 
                     WHERE id=$id";
 
-            return Conexion::ejecutar($sql);
+            Conexion::ejecutar($sql);
+            return true;
         }
 
         public function borrar($id){

@@ -42,22 +42,22 @@
 
     <?php
     	switch($msg){
-			case "ok_logout":
-				echo "<div class='alert alert-success my-4'>Saliste correctamente del sistema.</div>";
-				break;
+				case "ok_logout":
+					echo "<div class='alert alert-success my-4'>Saliste correctamente del sistema.</div>";
+					break;
 
-			case "err_logged":
-				echo "<div class='alert alert-danger my-4'>Debés loguearte para continuar.</div>";
-				break;
+				case "err_logged":
+					echo "<div class='alert alert-danger my-4'>Debés loguearte para continuar.</div>";
+					break;
 
-			case "err_login":
-				echo "<div class='alert alert-danger my-4'>El email y/o la contraseña son incorrectos.</div>";
-				break;
+				case "err_login":
+					echo "<div class='alert alert-danger my-4'>El email y/o la contraseña son incorrectos.</div>";
+					break;
 
-			case "err_required":
-				echo "<div class='alert alert-danger my-4'>Debés ingresar el email y la contraseña.</div>";
-				break;
-		}
+				case "err_required":
+					echo "<div class='alert alert-danger my-4'>Debés ingresar el email y la contraseña.</div>";
+					break;
+			}
     ?>
 
     <div class="mb-2 form-floating">

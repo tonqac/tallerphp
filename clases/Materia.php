@@ -44,7 +44,8 @@
 
                         WHERE id=$id";
 
-                return Conexion::ejecutar($sql);
+                Conexion::ejecutar($sql);
+                return true;
             }
             catch(Exception $e) {
                 return false;
